@@ -5,12 +5,10 @@ const Constraint = Matter.Constraint;
 
 var engine, world;
 var box1, pig1;
-var backgroundImg,platform;
+var platform;
 var bird, slingShot;
 
-function preload() {
-    backgroundImg = loadImage("sprites/bg.png");
-}
+
 
 function setup(){
     var canvas = createCanvas(1200,400);
@@ -33,17 +31,16 @@ function setup(){
     log3 =  new Log(810,180,300, PI/2);
 
     box5 = new Box(810,160,70,70);
-    log4 = new Log(760,120,150, PI/7);
-    log5 = new Log(870,120,150, -PI/7);
 
     bird = new Bird(200,50);
+    
 
     //log6 = new Log(230,180,80, PI/2);
     slingshot = new SlingShot(bird.body,{x:200, y:50});
 }
 
 function draw(){
-    background(backgroundImg);
+    background(251,122,39);
     Engine.update(engine);
     strokeWeight(4);
     box1.display();
@@ -58,9 +55,7 @@ function draw(){
     log3.display();
 
     box5.display();
-    log4.display();
-    log5.display();
-
+    
     bird.display();
     platform.display();
     //log6.display();
