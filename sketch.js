@@ -7,6 +7,8 @@ var engine, world;
 var box1, pig1;
 var platform;
 var bird, slingShot;
+var time = 0;
+var count = 0;
 
 
 
@@ -35,7 +37,6 @@ function setup(){
     bird = new Bird(200,50);
     
 
-    //log6 = new Log(230,180,80, PI/2);
     slingshot = new SlingShot(bird.body,{x:200, y:50});
 }
 
@@ -58,10 +59,19 @@ function draw(){
     
     bird.display();
     platform.display();
-    //log6.display();
-    slingshot.display();    
-}
+    
+    slingshot.display();  
+      
+   time = time + 1;
+    if(time > 500){
+        text("GAME OVER",600,200);
+        text("LOST",600,150);
 
+}
+ console.log(time)
+     text ("SCORE:" +count ,600,100);
+}
+  
 function mouseDragged(){
     Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
 }
@@ -69,4 +79,13 @@ function mouseDragged(){
 
 function mouseReleased(){
     slingshot.fly();
+}
+
+function keyPressed(){
+    if(keyCode===32){
+        Matter.Body.setPosition(bird.body,{x:200 , y:50});
+         slingshot.attach(bird.body);
+         bird.width = bird.width+5;
+         bird.height = bird.height+5;
+    }
 }
